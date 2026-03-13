@@ -58,8 +58,8 @@ namespace Demo {
          Thread.Sleep (300);
          win.FindFirstDescendant (x => x.ByAutomationId ("BtnDone"))!.Click ();
          Thread.Sleep (300);
-         var Tickbutton = win.FindFirstDescendant (x => x.ByAutomationId ("BtnYes"));
-         Tickbutton.Click ();
+         var TickButton = win.FindFirstDescendant (x => x.ByAutomationId ("BtnYes"));
+         TickButton.Click ();
       }
 
       /// <summary>Speed override</summary>

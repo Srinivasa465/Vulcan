@@ -22,8 +22,8 @@ namespace Demo {
          Thread.Sleep (TimeSpan.FromSeconds (8));
          var uia3 = new UIA3Automation ();
          win = uia3.GetDesktop ().FindFirstDescendant (x => x.ByAutomationId ("HomePage")).AsWindow ()!; // Home window
-         var programpage =win.FindFirstDescendant (x => x.ByName ("Programs"));
-         programpage.Click ();
+         var programPage =win.FindFirstDescendant (x => x.ByName ("Programs"));
+         programPage.Click ();
       }
 
       /// <summary> part edit</summary>
@@ -41,18 +41,18 @@ namespace Demo {
          win.FindFirstDescendant (x => x.ByAutomationId ("BtnDone")).Click ();
          Point partclk1 = new Point (398, 411);
          win.FindFirstDescendant (x => x.ByName ("move"))!.Click ();
-         var movewindow = win.Parent.FindFirstDescendant (x => x.ByAutomationId ("TitleBar")).Parent;
+         var moveWindow = win.Parent.FindFirstDescendant (x => x.ByAutomationId ("TitleBar")).Parent;
          Thread.Sleep (300);
          String[] stepSize = ["SmallChkBox", "MediumChkBox", "LargeChkBox"];
          String[] moves = ["move left", "move right", "move up", "move down"];
          for(int i = 0; i <stepSize.Length; i++) {
-            movewindow.FindFirstDescendant (x => x.ByAutomationId (stepSize[i])).Click();
+            moveWindow.FindFirstDescendant (x => x.ByAutomationId (stepSize[i])).Click();
             foreach (var move in moves) {
-               movewindow.FindFirstDescendant (x => x.ByName (move))!.Click ();
+               moveWindow.FindFirstDescendant (x => x.ByName (move))!.Click ();
                Thread.Sleep (500);    
             }
          }
-         movewindow.FindFirstDescendant (x => x.ByAutomationId ("Close"))!.Click ();
+         moveWindow.FindFirstDescendant (x => x.ByAutomationId ("Close"))!.Click ();
       }
 
       /// <summary>Rotate </summary>
@@ -67,7 +67,7 @@ namespace Demo {
          String[] stepSizess = ["SmallChkBox", "MediumChkBox", "LargeChkBox"];
          String[] stepSizes = ["rotate 90° right", "rotate 90° left", "rotate right", "rotate left"];
          for (int i = 0; i < stepSizess.Length; i++) {
-            movewindow.FindFirstDescendant (x => x.ByAutomationId (stepSizess[i]))!.Click ();
+            moveWindow.FindFirstDescendant (x => x.ByAutomationId (stepSizess[i]))!.Click ();
             foreach(var rotation in stepSizes)
                movewindow.FindFirstDescendant (x => x.ByName (rotation))!.Click ();
             Thread.Sleep (400);
