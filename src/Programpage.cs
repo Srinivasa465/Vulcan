@@ -30,7 +30,7 @@ namespace Demo {
       [Test(10,"Programspage")]
       public void Programspage () {
          win.FindFirstDescendant (x => x.ByName ("edit"))!.Click ();
-         Thread.Sleep (400);        
+         Thread.Sleep (400);
          Mouse.Click (new Point (398, 411));
          Point start = new Point (429, 462);
          Point drag = new Point (722, 717);
