@@ -85,7 +85,6 @@ namespace Demo {
          Keyboard.Type ("15");
          Thread.Sleep (400);
          win.FindFirstDescendant (x => x.ByName ("Close")).Click ();
-
       }
 
       /// <summary>Diagnostics setting</summary>
@@ -279,7 +278,7 @@ namespace Demo {
       }
 
       /// <summary> d</summary>
-      [Test (9, "capture")]
+      [Test (9, "Image capture")]
       public void imagecampare () {
          win.FindFirstDescendant (x => x.ByName ("Configure")).AsButton ()!.Click ();
          Thread.Sleep (400);
@@ -290,7 +289,6 @@ namespace Demo {
          Thread.Sleep (300);
          Assert.AreBitmapsEqual (@"C:\Work\S1actualvalue.png", @"C:\Work\S1currentvalue.png",90);
       }
-
       public static Window win;
    }
       #endregion
