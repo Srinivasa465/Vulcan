@@ -8,6 +8,7 @@ using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
 using FlaUI.UIA3;
 using Flit;
+using static System.Windows.Forms.AxHost;
 
 namespace Demo {
    [TestFixture (4, "Programpage")]
@@ -33,8 +34,7 @@ namespace Demo {
       [Test(003,"Programspage")]
       public void Programspage () {
          win.FindFirstDescendant (x => x.ByName ("edit"))!.Click ();
-         Thread.Sleep (400);
-         
+         Thread.Sleep (400);        
          Mouse.Click (new Point (398, 411));
          Point start = new Point (429, 462);
          Point drag = new Point (722, 717);
@@ -52,6 +52,26 @@ namespace Demo {
             movewindow.FindFirstDescendant (x => x.ByName (move))!.Click ();
             Thread.Sleep (500);
          }
+      }
+
+      /// <summary>Rotate </summary>
+      [Test (1546,"Rotate")]
+      public void C1546 () {
+         win.FindFirstDescendant (x => x.ByName ("edit"))!.Click ();
+         Thread.Sleep (300);
+         Mouse.Click (new Point (398, 411));
+         Thread.Sleep (300);
+         win.FindFirstDescendant (x => x.ByName ("rotate"))!.Click (); Thread.Sleep (500); 
+         var movewindow = win.Parent.FindFirstDescendant (x => x.ByAutomationId ("TitleBar")).Parent; Thread.Sleep (300);
+         String[] stepsizess = ["SmallChkBox", "MediumChkBox", "LargeChkBox"];
+         String[] stepsizes = ["rotate 90° right", "rotate 90° left", "rotate right", "rotate left"];
+         for (int i = 0; i < stepsizess.Length; i++) {
+            movewindow.FindFirstDescendant (x => x.ByAutomationId (stepsizess[i]))!.Click ();
+            foreach(var rotation in stepsizes)
+               movewindow.FindFirstDescendant (x => x.ByName (rotation))!.Click ();
+            Thread.Sleep (400);
+         }
+
       }
       #endregion
       public static Window win;
