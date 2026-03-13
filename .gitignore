@@ -1,0 +1,12 @@
+bin/
+.vs/
+obj/
+debug/
+packages/
+Properties/
+launchsettings.json
+*.bak
+*.orig
+*.chm
+*.csproj.user
+*.suo
