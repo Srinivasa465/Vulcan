@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing;
-using System.Text;
 using FlaUI.Core.AutomationElements;
-using FlaUI.Core.Conditions;
 using FlaUI.Core.Input;
 using FlaUI.UIA3;
 using Flit;
-using static System.Windows.Forms.AxHost;
+
 
 namespace Demo {
    [TestFixture (4, "Programpage")]
@@ -31,7 +27,7 @@ namespace Demo {
       }
 
       /// <summary> part edit</summary>
-      [Test(003,"Programspage")]
+      [Test(10,"Programspage")]
       public void Programspage () {
          win.FindFirstDescendant (x => x.ByName ("edit"))!.Click ();
          Thread.Sleep (400);        
@@ -47,11 +43,16 @@ namespace Demo {
          win.FindFirstDescendant (x => x.ByName ("move"))!.Click ();
          var movewindow = win.Parent.FindFirstDescendant (x => x.ByAutomationId ("TitleBar")).Parent;
          Thread.Sleep (300);
+         String[] stepSize = ["SmallChkBox", "MediumChkBox", "LargeChkBox"];
          String[] moves = ["move left", "move right", "move up", "move down"];
-         foreach(var move in moves) {
-            movewindow.FindFirstDescendant (x => x.ByName (move))!.Click ();
-            Thread.Sleep (500);
+         for(int i = 0; i <stepSize.Length; i++) {
+            movewindow.FindFirstDescendant (x => x.ByAutomationId (stepSize[i])).Click();
+            foreach (var move in moves) {
+               movewindow.FindFirstDescendant (x => x.ByName (move))!.Click ();
+               Thread.Sleep (500);    
+            }
          }
+         movewindow.FindFirstDescendant (x => x.ByAutomationId ("Close"))!.Click ();
       }
 
       /// <summary>Rotate </summary>
@@ -63,15 +64,15 @@ namespace Demo {
          Thread.Sleep (300);
          win.FindFirstDescendant (x => x.ByName ("rotate"))!.Click (); Thread.Sleep (500); 
          var movewindow = win.Parent.FindFirstDescendant (x => x.ByAutomationId ("TitleBar")).Parent; Thread.Sleep (300);
-         String[] stepsizess = ["SmallChkBox", "MediumChkBox", "LargeChkBox"];
-         String[] stepsizes = ["rotate 90° right", "rotate 90° left", "rotate right", "rotate left"];
-         for (int i = 0; i < stepsizess.Length; i++) {
-            movewindow.FindFirstDescendant (x => x.ByAutomationId (stepsizess[i]))!.Click ();
-            foreach(var rotation in stepsizes)
+         String[] stepSizess = ["SmallChkBox", "MediumChkBox", "LargeChkBox"];
+         String[] stepSizes = ["rotate 90° right", "rotate 90° left", "rotate right", "rotate left"];
+         for (int i = 0; i < stepSizess.Length; i++) {
+            movewindow.FindFirstDescendant (x => x.ByAutomationId (stepSizess[i]))!.Click ();
+            foreach(var rotation in stepSizes)
                movewindow.FindFirstDescendant (x => x.ByName (rotation))!.Click ();
             Thread.Sleep (400);
          }
-
+         movewindow.FindFirstDescendant (x => x.ByAutomationId ("Close"))!.Click ();
       }
       #endregion
       public static Window win;

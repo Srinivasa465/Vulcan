@@ -86,7 +86,6 @@ namespace Demo {
          Keyboard.Type ("15");
          Thread.Sleep (400);
          //win.FindFirstDescendant (x => x.ByName ("Close")).Click ();
-
       }
 
       /// <summary>Diagnostics setting</summary>
